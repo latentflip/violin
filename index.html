@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <script src='jam/require.js'></script>
+    <script src='instrument.js'></script>
+
+    <style>
+      #content {
+        width: 480px;
+        float: left;
+      }
+      #chart {
+        width: 480px;
+        float: left;
+        height: 500px;
+      }
+      #chart svg {
+        background: #eeeeff;
+      }
+
+      #chart text {
+        font-family: 'helvetica';
+        font-size: 12px;
+        text-anchor: middle;
+      }
+
+      #chart .object {
+        fill: #44DD00;
+      }
+
+      #chart .function {
+        fill: #FF6600;
+      }
+
+      #chart line.link {
+        stroke: #ccc;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div id='chart'></div>
+    <div id='content'></div>
+  </body>
+
+</html>
