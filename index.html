@@ -3,13 +3,34 @@
     <script src='jam/require.js'></script>
     <link rel='stylesheet' type='text/css' href='bootstrap.css'>
     <link rel='stylesheet' type='text/css' href='style.css'>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-29474408-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
 
   <body>
+<div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=278976971594";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
     <div class='container'>
       <div class='row'>
-        <div id='chart' class='span5'></div>
-        <div id='instructions' class='span6 offset1'>
+        <div id='chart' class='span5p5'></div>
+        <div id='instructions' class='span6 offset0p5'>
           <h1>Violin <small>Instrumenting JavaScript</small></h1>
 
           <p class='p-first'>
@@ -18,7 +39,7 @@
 
           <p>
             On the left is the Object and Function heirarchy for
-            a simple Backbone app (to see the app code click the button below).
+            a simple Backbone app (<a href='#' rel='show-code' data-content='View'> the code</a>).
           </p> 
 
           <p>Hit the button to start the backbone app and interact with it.</p>
@@ -29,12 +50,43 @@
             <div id='content'></div>
           </div>
           
-          <hr>
           <p>
-            <a href='#' class='btn' rel='show-code' data-content='View'> the backbone app's code</a>
+            This is an experiment by <a href='http://blog.latentflip.com'>Philip Roberts</a> (<a href='http://twitter.com'>@philip_roberts</a>).
           </p>
-          <script src="https://gist.github.com/3964362.js"></script>
+          <p>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bit.ly/RoRp52" data-text="Visualizing and instrumenting Javascript apps" data-via="philip_roberts">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <div class="fb-like" data-send="true" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+          </p>
 
+          <div id='the-code'>
+            <h3>The App Code</h3>
+            <script src="https://gist.github.com/3964362.js"></script>
+          </div>
+
+        </div>
+      </div>
+
+      <div class='row discussion'>
+        <div class='span12'>
+          <h2>Discussion</h2>
+        </div>
+        <div class='span12'>
+          <p class='p-first'>This is a first attempt at instrumenting a JavaScript application.</p>
+
+          <p>
+            Instrumenting is performed by recursively iterating over the applications namespace to build the graph, and decorating any functions to trigger events when they are called.
+          </p>
+
+          <p>
+            Currently the graph shows the Object heirarchy, rather than all the instantiations of the object, and function nodes on the graph will be triggered when any instantiation of that object calls the function.
+          </p>
+
+          <h2>The code</h2>
+          <script src="https://gist.github.com/3964466.js"> </script>
+
+          
+          
         </div>
       </div>
     </div>
@@ -48,7 +100,7 @@
           });
 
           $('a[rel=show-code]').click( function() {
-            var $gist = $('#gist-3964362');
+            var $gist = $('#the-code');
             if ($gist.is(':visible')) {
               $gist.slideUp();
               $(this).attr('data-content', 'View')

@@ -6,8 +6,8 @@
     Graph = (function() {
 
       function Graph(nodes, links) {
-        this.height = 500;
-        this.width = 380;
+        this.height = 600;
+        this.width = 430;
         this.nodes = nodes;
         this.links = links;
         this.rendered = false;

@@ -3,8 +3,8 @@ define ['d3'],
 
   class Graph
     constructor: (nodes, links) ->
-      @height = 500
-      @width = 380
+      @height = 600
+      @width = 430
       @nodes = nodes
       @links = links
       @rendered = false

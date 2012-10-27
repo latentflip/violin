@@ -1,6 +1,20 @@
 body {
   padding: 40px 0; }
 
+.span5p5 {
+  width: 430px; }
+
+.offset0p5 {
+  margin-left: 50px; }
+
+.discussion {
+  margin-top: 40px; }
+  .discussion h2 {
+    border-bottom: #ddd solid 1px; }
+
+.well {
+  margin-top: 20px; }
+
 .well h2 {
   margin-top: 0; }
 
@@ -12,13 +26,13 @@ body {
 a[rel="show-code"]:before {
   content: attr(data-content); }
 
-#gist-3964362 {
+#the-code {
   display: none; }
 
 #instructions {
-  height: 500px;
-  overflow-y: auto;
-  padding-right: 10px;
+  height: 600px;
+  overflow-y: scroll;
+  padding-right: 30px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box; }
