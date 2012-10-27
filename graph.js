@@ -13,6 +13,7 @@
         this.nodes = nodes;
         this.links = links;
         this.rendered = false;
+        this.animateSequentially = true;
       }
 
       Graph.prototype.setupForce = function() {
@@ -24,7 +25,7 @@
       };
 
       Graph.prototype.setupLegend = function() {
-        var items, legend, litems;
+        var controls, items, legend, litems, that;
         legend = this.svg.append('svg:g').attr('class', 'legend').attr('transform', "translate(20,20)");
         items = [
           {
@@ -44,8 +45,23 @@
         litems.append('text').text(function(d) {
           return d.t;
         }).attr('dy', 5).attr('dx', 10);
-        return litems.attr('transform', function(d, i) {
+        litems.attr('transform', function(d, i) {
           return "translate(0, " + (i * 20) + ")";
+        });
+        controls = this.svg.append('svg:g').attr('class', 'controls').attr('transform', 'translate(410,20)');
+        that = this;
+        controls.append('circle').attr('r', 5).style('stroke', '#000000').style('fill', 'black').style('stroke-width', 1);
+        controls.append('text').text('Slow animations').style('text-anchor', 'end').attr('x', -10).attr('dy', 4);
+        return controls.on('click', function() {
+          var circle;
+          circle = d3.select(this).select('circle');
+          if (that.animateSequentially) {
+            that.animateSequentially = false;
+            return circle.style('fill', 'black');
+          } else {
+            that.animateSequentially = true;
+            return circle.style('fill', 'white');
+          }
         });
       };
 
@@ -123,10 +139,16 @@
             return d.id;
           });
           updated.append('circle').attr('class', 'ring').attr('r', 10).attr('cx', 0).attr('cy', 0).attr('opacity', 1).transition().duration(2000).attr('r', 20).attr('opacity', 0);
-          return updated.selectAll('circle.node').transition().duration(100).attr('r', 25).transition().delay(100).duration(100).attr('r', 5).each('end', function() {
-            _this.triggers.shift();
-            return _this.animateQueue();
-          });
+          if (this.animateSequentially) {
+            return updated.selectAll('circle.node').transition().duration(100).attr('r', 25).transition().delay(100).duration(100).attr('r', 5).each('end', function() {
+              _this.triggers.shift();
+              return _this.animateQueue();
+            });
+          } else {
+            updated.selectAll('circle.node').transition().duration(100).attr('r', 25).transition().delay(100).duration(100).attr('r', 5);
+            this.triggers.shift();
+            return this.animateQueue();
+          }
         }
       };
 

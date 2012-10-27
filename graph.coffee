@@ -8,6 +8,7 @@ define ['d3'],
       @nodes = nodes
       @links = links
       @rendered = false
+      @animateSequentially = true
 
     setupForce: ->
       @force = d3.layout.force()
@@ -42,7 +43,32 @@ define ['d3'],
 
       litems.attr('transform', (d,i) -> "translate(0, #{i*20})")
               #.attr('dy', (d,i) -> i*1.2+'em')
+    
+      controls = @svg.append('svg:g')
+                  .attr('class', 'controls')
+                  .attr('transform', 'translate(410,20)')
 
+      that = @
+      controls.append('circle')
+                .attr('r', 5)
+                .style('stroke', '#000000')
+                .style('fill', 'black')
+                .style('stroke-width', 1)
+      controls.append('text')
+                .text('Slow animations')
+                .style('text-anchor', 'end')
+                .attr('x', -10)
+                .attr('dy', 4)
+
+      controls.on('click', ->
+        circle = d3.select(@).select('circle')
+        if that.animateSequentially
+          that.animateSequentially = false
+          circle.style('fill', 'black')
+        else
+          that.animateSequentially = true
+          circle.style('fill', 'white')
+      )
 
     setupGraph: ()->
       @force.nodes(@nodes)
@@ -122,14 +148,21 @@ define ['d3'],
               .attr('r', 20)
               .attr('opacity', 0)
 
-
-
-        updated.selectAll('circle.node')
-          .transition().duration(100)
-          .attr('r', 25)
-          .transition().delay(100).duration(100)
-            .attr('r', 5)
-            .each('end', => @triggers.shift(); @animateQueue())
+        if @animateSequentially
+          updated.selectAll('circle.node')
+            .transition().duration(100)
+            .attr('r', 25)
+            .transition().delay(100).duration(100)
+              .attr('r', 5)
+              .each('end', => @triggers.shift(); @animateQueue())
+        else
+          updated.selectAll('circle.node')
+            .transition().duration(100)
+            .attr('r', 25)
+            .transition().delay(100).duration(100)
+              .attr('r', 5)
+          @triggers.shift()
+          @animateQueue()
 
     updateNodes: (nodes, links) ->
       @nodes = nodes
