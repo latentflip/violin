@@ -5,6 +5,7 @@ define ['underscore', 'graph', 'backbone', 'instrumentor'],
     Views: {}
   }
   
+
   class App.Views.ListItem extends Backbone.View
     events:
       'hover' : 'onHover'
