@@ -51,7 +51,6 @@ define ['underscore', 'graph', 'backbone', 'instrumentor'],
       """
 
     addOne: (model) =>
-      console.log model
       @$('ul').append new App.Views.ListItem(model: model).render().el
       
     render: =>
@@ -64,6 +63,7 @@ define ['underscore', 'graph', 'backbone', 'instrumentor'],
     list.render()
     $('#content').append list.el
 
+  window.App = App
   
   new Instrumentor(App)
   

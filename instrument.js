@@ -93,7 +93,6 @@
       ListView.prototype.template = "<ul></ul>\n<a rel='add' href='#' class='btn btn-primary btn-small'>+ add item</a>";
 
       ListView.prototype.addOne = function(model) {
-        console.log(model);
         return this.$('ul').append(new App.Views.ListItem({
           model: model
         }).render().el);
@@ -117,6 +116,7 @@
       list.render();
       return $('#content').append(list.el);
     };
+    window.App = App;
     new Instrumentor(App);
     return App;
   });
