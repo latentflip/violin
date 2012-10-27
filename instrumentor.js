@@ -111,7 +111,7 @@
 
       Instrumentor.prototype.instrumentConstructor = function(parentNode, cons) {
         var addNode, instrumentObject, newCons, node, trigger;
-        node = this.addNode(cons.name, 'function', parentNode);
+        node = this.addNode(cons.name, 'constructor', parentNode);
         trigger = this.trigger;
         addNode = this.addNode;
         instrumentObject = this.instrumentObject;
@@ -120,8 +120,7 @@
           args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
           o = cons.apply(this, args);
           trigger(node);
-          n = addNode(this.cid, 'object', node);
-          instrumentObject(n, cons.name, this, true);
+          n = addNode(this.cid, 'instantiation', node);
           return o;
         };
         newCons.prototype = this.instrumentObject(node, cons.name, cons.prototype);

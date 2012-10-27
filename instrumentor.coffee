@@ -56,7 +56,7 @@ define ['graph', 'underscore'],
       @graph = new Graph(@nodes, @links).render()
     
     instrumentConstructor: (parentNode, cons) =>
-      node = @addNode(cons.name, 'function', parentNode)
+      node = @addNode(cons.name, 'constructor', parentNode)
       trigger = @trigger
       addNode = @addNode
       instrumentObject = @instrumentObject
@@ -64,8 +64,7 @@ define ['graph', 'underscore'],
       newCons = (args...) ->
         o = cons.apply(@, args)
         trigger node
-        n = addNode(@cid, 'object', node)
-        instrumentObject(n, cons.name, @, true)
+        n = addNode(@cid, 'instantiation', node)
         o
 
       newCons.prototype = @instrumentObject(node, cons.name, cons.prototype)

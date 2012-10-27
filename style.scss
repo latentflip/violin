@@ -83,10 +83,20 @@ a[rel="show-code"]:before {
     background: #eeeeff;
   }
 
+  .legend text {
+    text-anchor: start;
+  }
   text {
     font-family: 'helvetica';
     font-size: 12px;
     text-anchor: middle;
+  }
+
+  .instantiation {
+    fill: #FF69B4;
+  }
+  .constructor {
+    fill: #0066FF;
   }
 
   .object {

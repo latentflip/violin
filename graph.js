@@ -21,6 +21,33 @@
         return this.svg = d3.select('#chart').append('svg').attr('width', this.width).attr('height', this.height);
       };
 
+      Graph.prototype.setupLegend = function() {
+        var items, legend, litems;
+        legend = this.svg.append('svg:g').attr('class', 'legend').attr('transform', "translate(20,20)");
+        console.log(legend);
+        items = [
+          {
+            t: 'object'
+          }, {
+            t: 'function'
+          }, {
+            t: 'constructor'
+          }, {
+            t: 'instantiation'
+          }
+        ];
+        litems = legend.selectAll('.legend-item').data(items).enter().append('svg:g').attr('class', function(d) {
+          return d.t + ' legend-item';
+        });
+        litems.append('circle').attr('r', 5);
+        litems.append('text').text(function(d) {
+          return d.t;
+        }).attr('dy', 5).attr('dx', 10);
+        return litems.attr('transform', function(d, i) {
+          return "translate(0, " + (i * 20) + ")";
+        });
+      };
+
       Graph.prototype.setupGraph = function() {
         var entered, enteredLinks;
         this.force.nodes(this.nodes).links(this.links);
@@ -64,6 +91,7 @@
       Graph.prototype.render = function() {
         this.setupForce();
         this.setupSVG();
+        this.setupLegend();
         this.setupGraph();
         this.onTick();
         this.rendered = true;

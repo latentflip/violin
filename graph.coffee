@@ -20,6 +20,32 @@ define ['d3'],
         .attr('width', @width)
         .attr('height', @height)
 
+    setupLegend: ->
+      legend = @svg.append('svg:g')
+                .attr('class', 'legend')
+                .attr('transform', "translate(20,20)")
+
+
+      console.log legend
+      items = [{t: 'object'}, {t:'function'}, {t:'constructor'}, {t:'instantiation'}]
+
+      litems = legend.selectAll('.legend-item')
+                  .data(items)
+                .enter().append('svg:g')
+                  .attr('class', (d) -> d.t + ' legend-item')
+
+      litems.append('circle')
+              .attr('r', 5)
+
+      litems.append('text')
+              .text( (d) -> d.t)
+              .attr('dy', 5)
+              .attr('dx', 10)
+
+      litems.attr('transform', (d,i) -> "translate(0, #{i*20})")
+              #.attr('dy', (d,i) -> i*1.2+'em')
+
+
     setupGraph: ()->
       @force.nodes(@nodes)
             .links(@links)
@@ -64,6 +90,7 @@ define ['d3'],
     render: ->
       @setupForce()
       @setupSVG()
+      @setupLegend()
       @setupGraph()
       @onTick()
       @rendered = true
