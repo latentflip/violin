@@ -64,10 +64,10 @@ define ['d3'],
         circle = d3.select(@).select('circle')
         if that.animateSequentially
           that.animateSequentially = false
-          circle.style('fill', 'black')
+          circle.style('fill', 'white')
         else
           that.animateSequentially = true
-          circle.style('fill', 'white')
+          circle.style('fill', 'black')
       )
 
     setupGraph: ()->

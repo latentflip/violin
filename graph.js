@@ -57,10 +57,10 @@
           circle = d3.select(this).select('circle');
           if (that.animateSequentially) {
             that.animateSequentially = false;
-            return circle.style('fill', 'black');
+            return circle.style('fill', 'white');
           } else {
             that.animateSequentially = true;
-            return circle.style('fill', 'white');
+            return circle.style('fill', 'black');
           }
         });
       };
