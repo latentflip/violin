@@ -13,6 +13,7 @@ phil@latentflip.com
 
 ## Changes
 
+* `27 Oct '12`: Add control to slow down animations or not.
 * `27 Oct '12`: Updates are now run sequentially, with bubble trails.
 * `27 Oct '12`: Now shows object instantiations, and has a legend.
 * `27 Oct '12`: First cut.
