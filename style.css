@@ -40,7 +40,7 @@ a[rel="show-code"]:before {
 .fb-like {
   display: inline-block; }
 
-#instructions iframe {
+#instructions iframe.twitter-share-button {
   position: relative;
   top: 3px;
   left: 5px; }
