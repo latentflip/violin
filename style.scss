@@ -40,6 +40,13 @@ body {
   }
 }
 
+footer #fork {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+
 a[rel="show-code"]:before {
   content: attr(data-content);
 }
