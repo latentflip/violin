@@ -52,6 +52,14 @@ a[rel="show-code"]:before {
   display: inline-block;
 }
 
+#instructions {
+  iframe {
+    position: relative;
+    top: 3px;
+    left: 5px;
+  }
+}
+
 #chart {
   height: 500px;
 
