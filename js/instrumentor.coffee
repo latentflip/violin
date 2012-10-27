@@ -1,4 +1,4 @@
-define ['graph', 'underscore'],
+define ['js/graph', 'underscore'],
 (Graph, _) ->
   _.isConstructor = (thing) ->
     if thing.name && thing.name[0].toUpperCase() == thing.name[0]

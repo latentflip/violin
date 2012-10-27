@@ -1,0 +1,12 @@
+{
+  "jam": {
+    "packageDir": "js/vendor",
+    "baseUrl": "",
+    "dependencies": {
+      "jquery": null,
+      "underscore": null,
+      "backbone": null,
+      "d3": null
+    }
+  }
+}

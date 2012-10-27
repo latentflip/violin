@@ -2,22 +2,22 @@ var jam = {
     "packages": [
         {
             "name": "backbone",
-            "location": "jam/backbone",
+            "location": "js/vendor/backbone",
             "main": "backbone.js"
         },
         {
             "name": "d3",
-            "location": "jam/d3",
+            "location": "js/vendor/d3",
             "main": "d3.v2.js"
         },
         {
             "name": "jquery",
-            "location": "jam/jquery",
+            "location": "js/vendor/jquery",
             "main": "jquery.js"
         },
         {
             "name": "underscore",
-            "location": "jam/underscore",
+            "location": "js/vendor/underscore",
             "main": "underscore.js"
         }
     ],

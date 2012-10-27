@@ -1,5 +1,5 @@
-define ['underscore', 'graph', 'backbone', 'instrumentor'],
-(_, Graph, Backbone, Instrumentor) ->
+define ['underscore', 'backbone', 'js/instrumentor'],
+(_, Backbone, Instrumentor) ->
 
   App = {
     Views: {}
