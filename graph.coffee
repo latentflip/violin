@@ -25,8 +25,6 @@ define ['d3'],
                 .attr('class', 'legend')
                 .attr('transform', "translate(20,20)")
 
-
-      console.log legend
       items = [{t: 'object'}, {t:'function'}, {t:'constructor'}, {t:'instantiation'}]
 
       litems = legend.selectAll('.legend-item')
@@ -67,9 +65,11 @@ define ['d3'],
                   .call(@force.drag)
 
       entered.append('circle')
+          .attr('class', 'node')
           .attr('cx', 0)
           .attr('cy', 0)
           .attr('r', 5)
+
       
       entered.append('text')
             .attr('dx', 0)
@@ -96,13 +96,40 @@ define ['d3'],
       @rendered = true
       @
   
+    triggers: []
+    queueTrigger: (node) ->
+      if @triggers.length == 0
+        @triggers.push(node)
+        @animateQueue()
+      else
+        @triggers.push(node)
+
     triggerNode: (node) ->
-      updated = @node.data([node], (d)->d.id)
-      updated.selectAll('circle')
-        .transition().duration(200)
-        .attr('r', 25)
-        .transition().delay(200).duration(200)
-          .attr('r', 5)
+      @queueTrigger(node)
+
+    animateQueue: () =>
+      node = @triggers[0]
+      if node
+        updated = @node.data([node], (d)->d.id)
+        
+        updated.append('circle')
+              .attr('class', 'ring')
+              .attr('r', 10)
+              .attr('cx', 0)
+              .attr('cy', 0)
+              .attr('opacity', 1)
+            .transition().duration(2000)
+              .attr('r', 20)
+              .attr('opacity', 0)
+
+
+
+        updated.selectAll('circle.node')
+          .transition().duration(100)
+          .attr('r', 25)
+          .transition().delay(100).duration(100)
+            .attr('r', 5)
+            .each('end', => @triggers.shift(); @animateQueue())
 
     updateNodes: (nodes, links) ->
       @nodes = nodes

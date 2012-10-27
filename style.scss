@@ -94,17 +94,37 @@ a[rel="show-code"]:before {
 
   .instantiation {
     fill: #FF69B4;
+    .ring {
+      fill: none;
+      stroke: #FF69B4;
+      stroke-width: 1px;
+    }
   }
   .constructor {
     fill: #0066FF;
+    .ring {
+      fill: none;
+      stroke: #0066FF;
+      stroke-width: 1px;
+    }
   }
 
   .object {
     fill: #44DD00;
+    .ring {
+      fill: none;
+      stroke: #44DD00;
+      stroke-width: 1px;
+    }
   }
 
   .function {
     fill: #FF6600;
+    .ring {
+      fill: none;
+      stroke: #FF6600;
+      stroke-width: 1px;
+    }
   }
 
   line.link {
