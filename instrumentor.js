@@ -72,7 +72,7 @@
       };
 
       Instrumentor.prototype.instrument = function(namespace) {
-        this.instrumentObject(null, 'Root', namespace);
+        this.instrumentObject(null, 'App', namespace);
         return this.graph = new Graph(this.nodes, this.links).render();
       };
 

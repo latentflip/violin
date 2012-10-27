@@ -47,7 +47,7 @@ define ['underscore', 'graph', 'backbone', 'instrumentor'],
     template:
       """
         <ul></ul>
-        <a rel='add' href='#'>+add</a>
+        <a rel='add' href='#' class='btn btn-primary btn-small'>+ add item</a>
       """
 
     addOne: (model) =>

@@ -90,7 +90,7 @@
         });
       };
 
-      ListView.prototype.template = "<ul></ul>\n<a rel='add' href='#'>+add</a>";
+      ListView.prototype.template = "<ul></ul>\n<a rel='add' href='#' class='btn btn-primary btn-small'>+ add item</a>";
 
       ListView.prototype.addOne = function(model) {
         console.log(model);

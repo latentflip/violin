@@ -4,7 +4,7 @@ define ['d3'],
   class Graph
     constructor: (nodes, links) ->
       @height = 500
-      @width = 480
+      @width = 380
       @nodes = nodes
       @links = links
       @rendered = false
@@ -12,7 +12,7 @@ define ['d3'],
     setupForce: ->
       @force = d3.layout.force()
                 .charge(-200)
-                .linkDistance(50)
+                .linkDistance(30)
                 .size([@width, @height])
 
     setupSVG: ->

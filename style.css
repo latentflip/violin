@@ -1,0 +1,43 @@
+body {
+  padding: 40px 0; }
+
+.well h2 {
+  margin-top: 0; }
+
+.p-first {
+  font-size: 120%;
+  color: #333399;
+  margin-top: 30px; }
+
+a[rel="show-code"]:before {
+  content: attr(data-content); }
+
+#gist-3964362 {
+  display: none; }
+
+#instructions {
+  height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; }
+
+#chart {
+  height: 500px; }
+  #chart svg {
+    background: #eeeeff; }
+  #chart text {
+    font-family: 'helvetica';
+    font-size: 12px;
+    text-anchor: middle; }
+  #chart .object {
+    fill: #44DD00; }
+  #chart .function {
+    fill: #FF6600; }
+  #chart line.link {
+    stroke: #ccc; }
+
+#content h1 small {
+  color: #999;
+  display: block; }

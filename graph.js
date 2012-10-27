@@ -7,14 +7,14 @@
 
       function Graph(nodes, links) {
         this.height = 500;
-        this.width = 480;
+        this.width = 380;
         this.nodes = nodes;
         this.links = links;
         this.rendered = false;
       }
 
       Graph.prototype.setupForce = function() {
-        return this.force = d3.layout.force().charge(-200).linkDistance(50).size([this.width, this.height]);
+        return this.force = d3.layout.force().charge(-200).linkDistance(30).size([this.width, this.height]);
       };
 
       Graph.prototype.setupSVG = function() {

@@ -38,7 +38,7 @@ define ['graph', 'underscore'],
       console.log('triggered', node)
 
     instrument: (namespace) ->
-      @instrumentObject(null, 'Root', namespace)
+      @instrumentObject(null, 'App', namespace)
       @graph = new Graph(@nodes, @links).render()
     
     instrumentConstructor: (parentNode, cons) =>

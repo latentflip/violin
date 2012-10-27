@@ -1,47 +1,42 @@
 <html>
   <head>
     <script src='jam/require.js'></script>
-
-    <style>
-      #content {
-        width: 480px;
-        float: left;
-      }
-      #chart {
-        width: 480px;
-        float: left;
-        height: 500px;
-      }
-      #chart svg {
-        background: #eeeeff;
-      }
-
-      #chart text {
-        font-family: 'helvetica';
-        font-size: 12px;
-        text-anchor: middle;
-      }
-
-      #chart .object {
-        fill: #44DD00;
-      }
-
-      #chart .function {
-        fill: #FF6600;
-      }
-
-      #chart line.link {
-        stroke: #ccc;
-      }
-    </style>
-
+    <link rel='stylesheet' type='text/css' href='bootstrap.css'>
+    <link rel='stylesheet' type='text/css' href='style.css'>
   </head>
 
   <body>
-    <div id='chart'></div>
-    <div id='instructions'>
-      <a href='#' rel='startApp'>Start</a>
-      <div id='content'></div>
+    <div class='container'>
+      <div class='row'>
+        <div id='chart' class='span5'></div>
+        <div id='instructions' class='span6 offset1'>
+          <h1>Violin <small>Instrumenting JavaScript</small></h1>
+
+          <p class='p-first'>
+            This is an experimenting in instrumenting JavaScript applications. 
+          </p>
+
+          <p>
+            On the left is the Object and Function heirarchy for
+            a simple Backbone app (to see the app code click the button below).
+          </p> 
+
+          <p>Hit the button to start the backbone app and interact with it.</p>
+
+          <div class='well'>
+            <h2>The App</h2>
+            <a href='#' rel='startApp' class='btn btn-primary'>Start the backbone app</a>
+            <div id='content'></div>
+          </div>
+          
+          <hr>
+          <p>
+            <a href='#' class='btn' rel='show-code' data-content='View'> the backbone app's code</a>
+          </p>
+          <script src="https://gist.github.com/3964362.js"></script>
+
+        </div>
+      </div>
     </div>
 
     <script>
@@ -51,6 +46,20 @@
             $(this).remove()
             App.init()
           });
+
+          $('a[rel=show-code]').click( function() {
+            var $gist = $('#gist-3964362');
+            if ($gist.is(':visible')) {
+              $gist.slideUp();
+              $(this).attr('data-content', 'View')
+            } else {
+              $gist.slideDown(200);
+              $(this).attr('data-content', 'Hide')
+            }
+            
+          });
+
+
         });
       });
     </script>
