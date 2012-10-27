@@ -4,8 +4,9 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  require(['underscore', 'graph', 'backbone', 'instrumentor'], function(_, Graph, Backbone, Instrumentor) {
-    window.App = {
+  define(['underscore', 'graph', 'backbone', 'instrumentor'], function(_, Graph, Backbone, Instrumentor) {
+    var App;
+    App = {
       Views: {}
     };
     App.Views.ListItem = (function(_super) {
@@ -19,22 +20,32 @@
 
       ListItem.prototype.events = {
         'hover': 'onHover',
-        'click': 'onClick'
+        'click a[rel=delete]': 'onDelete'
+      };
+
+      ListItem.prototype.initialize = function() {
+        var _this = this;
+        return this.model.bind('destroy', function() {
+          return $(_this.el).remove();
+        });
       };
 
       ListItem.prototype.tagName = 'li';
+
+      ListItem.prototype.onDelete = function() {
+        return this.model.destroy();
+      };
 
       ListItem.prototype.onHover = function() {
         return console.log('hovered');
       };
 
-      ListItem.prototype.onClick = function() {
-        return console.log('click');
+      ListItem.prototype.template = function(o) {
+        return "" + (o.get('text')) + " <a href='#' rel='delete'>x</a>";
       };
 
       ListItem.prototype.render = function() {
-        console.log(this.options);
-        $(this.el).append(this.options.model.get('text'));
+        $(this.el).append(this.template(this.options.model));
         return this;
       };
 
@@ -46,31 +57,53 @@
       __extends(ListView, _super);
 
       function ListView() {
+        this.render = __bind(this.render, this);
+
+        this.addOne = __bind(this.addOne, this);
         return ListView.__super__.constructor.apply(this, arguments);
       }
 
-      ListView.prototype.tagName = 'ul';
-
       ListView.prototype.initialize = function() {
-        return this.models = new Backbone.Collection([
+        this.models = new Backbone.Collection([
           {
-            text: 'Hi'
+            text: 'Item 1'
           }, {
-            text: 'There'
+            text: 'Item 2'
           }, {
-            text: 'Boo'
+            text: 'Item 3'
           }, {
-            text: 'Yah'
+            text: 'Item 4'
           }
         ]);
+        this.i = 4;
+        return this.models.bind('add', this.addOne);
+      };
+
+      ListView.prototype.events = {
+        'click [rel=add]': 'addModel'
+      };
+
+      ListView.prototype.addModel = function() {
+        this.i++;
+        return this.models.add({
+          text: "Item " + this.i
+        });
+      };
+
+      ListView.prototype.template = "<ul></ul>\n<a rel='add' href='#'>+add</a>";
+
+      ListView.prototype.addOne = function(model) {
+        console.log(model);
+        return this.$('ul').append(new App.Views.ListItem({
+          model: model
+        }).render().el);
       };
 
       ListView.prototype.render = function() {
         var _this = this;
+        $(this.el).html(this.template);
         this.models.each(function(model) {
-          return $(_this.el).append(new App.Views.ListItem({
-            model: model
-          }).render().el);
+          return _this.addOne(model);
         });
         return this;
       };
@@ -82,11 +115,10 @@
       var list;
       list = new App.Views.ListView();
       list.render();
-      console.log(list);
       return $('#content').append(list.el);
     };
     new Instrumentor(App);
-    return App.init();
+    return App;
   });
 
 }).call(this);

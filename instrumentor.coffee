@@ -62,7 +62,7 @@ define ['graph', 'underscore'],
       return (args...) ->
         trigger(node)
         console.log("Calling", name)
-        func.apply(@, args...)
+        func.apply(@, args)
 
     instrumentObject: (parentNode, name, object) =>
       node = @addNode(name||'Anon', 'object', parentNode)

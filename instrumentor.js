@@ -102,7 +102,7 @@
           args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
           trigger(node);
           console.log("Calling", name);
-          return func.apply.apply(func, [this].concat(__slice.call(args)));
+          return func.apply(this, args);
         };
       };
 

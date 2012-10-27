@@ -1,7 +1,6 @@
 <html>
   <head>
     <script src='jam/require.js'></script>
-    <script src='instrument.js'></script>
 
     <style>
       #content {
@@ -40,7 +39,22 @@
 
   <body>
     <div id='chart'></div>
-    <div id='content'></div>
+    <div id='instructions'>
+      <a href='#' rel='startApp'>Start</a>
+      <div id='content'></div>
+    </div>
+
+    <script>
+      require(['instrument'], function(App) {
+        $(function() {
+          $('a[rel=startApp]').click( function() {
+            $(this).remove()
+            App.init()
+          });
+        });
+      });
+    </script>
+
   </body>
 
 </html>
