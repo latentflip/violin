@@ -28,7 +28,16 @@ body {
 .p-first {
   font-size: 120%;
   color: #333399;
+}
+
+#instructions .p-first {
   margin-top: 30px;
+}
+
+.discussion {
+  h2 {
+    margin-top: 40px;
+  }
 }
 
 a[rel="show-code"]:before {
