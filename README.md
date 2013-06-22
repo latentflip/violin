@@ -1,6 +1,6 @@
 # Violin: Intstrumenting JavaScript
 
-### Demo: http://latentflip.github.com/violin
+### Demo: http://latentflip.com/hacks/violin
 
 This is a very early stage project looking at instrumenting and visualizing JavaScript execution.
 
