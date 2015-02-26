@@ -1,4 +1,4 @@
-# Violin: Intstrumenting JavaScript
+# Violin: Instrumenting JavaScript
 
 ### Demo: http://latentflip.com/hacks/violin
 
